@@ -29,4 +29,4 @@ jobs:
         APIKey: ${{ secrets.PSGallery_APIKey }}
         ModuleName: "PSOverheidIO"
       run: |
-        Import-Module ./; Publish-Module -Name $env:ModuleName -APIKey $env:APIKey
+        Import-Module ./*.psm1; Publish-Module -Name $env:ModuleName -APIKey $env:APIKey
