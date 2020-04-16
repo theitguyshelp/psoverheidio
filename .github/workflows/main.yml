@@ -6,7 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - master
+      - ci
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,4 +29,4 @@ jobs:
         APIKey: ${{ secrets.PSGallery_APIKey }}
         ModuleName: "PSOverheidIO"
       run: |
-        Import-Module "$env:GITHUB_WORKSPACE/psoverheidio"; Publish-Module -Name $env:ModuleName -APIKey $env:APIKey
+        Import-Module ./; Publish-Module -Name $env:ModuleName -NuGetApiKey $env:APIKey
