@@ -27,4 +27,4 @@ jobs:
         APIKey: ${{ secrets.PSGallery_APIKey }}
         ModuleName: "PSOverheidIO"
       run: |
-        Import-Module $env:GITHUB_WORKSPACE; Publish-Module -Name $env:ModuleName -APIKey $env:APIKey
+        Import-Module "$env:GITHUB_WORKSPACE/psoverheidio"; Publish-Module -Name $env:ModuleName -APIKey $env:APIKey
