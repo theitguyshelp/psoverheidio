@@ -4,7 +4,7 @@
     RootModule = 'PSOverheidIO.psm1'
     
     # Version number of this module.
-    ModuleVersion = '0.1.1'
+    ModuleVersion = '0.1.2'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -99,7 +99,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-             ReleaseNotes = "Added Get-OpenKVKSuggestion cmdlet to be able to call the /suggest endpoint."
+             ReleaseNotes = "Fix for ID parameter in Get-OpenKVKResult"
     
         } # End of PSData hashtable
     
