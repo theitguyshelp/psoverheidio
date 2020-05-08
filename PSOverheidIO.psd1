@@ -4,7 +4,7 @@
     RootModule = 'PSOverheidIO.psm1'
     
     # Version number of this module.
-    ModuleVersion = '0.1.2'
+    ModuleVersion = '0.1.3'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -99,7 +99,7 @@
             # IconUri = ''
     
             # ReleaseNotes of this module
-             ReleaseNotes = "Fix for ID parameter in Get-OpenKVKResult"
+             ReleaseNotes = "Changed behaviour in GETs for Get-OpenKVKResult to accomodate multiple results when entering a KVKID."
     
         } # End of PSData hashtable
     
