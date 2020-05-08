@@ -22,8 +22,8 @@ function Get-OpenKVKResult {
 
         $URL = $OverheidIO_APIHost + $APIEndpoint
 
-        if ($OpenKVKID) {
-            $URL = $URL + "/$OpenKVKID"
+        if ($ID) {
+            $URL = $URL + "/$ID"
         }
 
         if ($Postcode) {
