@@ -14,6 +14,7 @@ function Get-OpenKVKResult {
     )
 
     Begin {
+        $ReturnObject = @()
         $headers = @{
             'ovio-api-key' = $OverheidIO_APIKey
         }
@@ -29,20 +30,29 @@ function Get-OpenKVKResult {
         if ($Postcode) {
             $URL = $URL + "?filters[postcode]=$Postcode"
         }
-
-        if ($KVKID) {
-            $QueryURL = $URL + "?query=$KVKID&queryfields[]=dossiernummer"
-            $QueryResponse = Invoke-RestMethod -Method GET -Uri $QueryURL -Headers $headers
-            $URL = $OverheidIO_APIHost + $QueryResponse._embedded.bedrijf._links.self.href
-        }
     }
 
     Process {
-        Write-Debug "Making a request to the following URL: $URL"
-        $Response = Invoke-RestMethod -Method GET -Uri $URL -Headers $headers
+        if ($KVKID) {
+            $QueryURL = $URL + "?query=$KVKID&queryfields[]=dossiernummer"
+            $QueryResponses = Invoke-RestMethod -Method GET -Uri $QueryURL -Headers $headers
+            Write-Debug "Overheid.io returned $($QueryResponses.count) links"
+            Foreach ($QueryResponse in $QueryResponses._embedded.bedrijf) {
+                $URL = $OverheidIO_APIHost + $QueryResponse._links.self.href
+                $Response = Invoke-RestMethod -Method GET -Uri $URL -Headers $headers
+                Write-Debug "Making a request to the following URL: $URL"
+                $ReturnObject += $Response
+            }
+            
+        }
+        else {
+            $Response = Invoke-RestMethod -Method GET -Uri $URL -Headers $headers
+            Write-Debug "Making a request to the following URL: $URL"
+            $ReturnObject += $Response
+        }
     }
 
     End {
-        return $Response
+        return $ReturnObject
     }
 }
