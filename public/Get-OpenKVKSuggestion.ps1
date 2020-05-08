@@ -25,6 +25,6 @@ function Get-OpenKVKSuggestion {
     }
 
     End {
-        return $Response
+        return $Response.handelsnaam
     }
 }
